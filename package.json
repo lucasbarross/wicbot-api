@@ -19,6 +19,6 @@
   "homepage": "https://github.com/lucasbarross/wicbot-api#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "mongoose": "^4.13.9"
+    "mysql2": "^1.5.1"
   }
 }
