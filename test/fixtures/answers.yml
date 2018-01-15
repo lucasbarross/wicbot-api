@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player: one
+  champion: one
+  correct: false
+  hinted: false
+
+two:
+  player: two
+  champion: two
+  correct: false
+  hinted: false
