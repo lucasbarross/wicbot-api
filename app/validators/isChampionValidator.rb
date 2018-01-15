@@ -6,8 +6,10 @@ class isChampionValidator < ActiveModel::EachValidator
     end
 
     def invalid(value)
-        str = value.split(' ').join
-        if(open("http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/" + str +".png"))
+        str = value.split(' ')
+        str.each_with_index{ |name, index| str[index] = name.capitalize}
+        str.join
+        if(open("http://ddragon.leagueoflegends.com/cdn/7.10.1/img/champion/" + str +".png"))
             return true
         return false
     end
