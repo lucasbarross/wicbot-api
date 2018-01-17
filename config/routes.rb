@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :guilds
   resources :localizations
   resources :suggestions
   resources :answers

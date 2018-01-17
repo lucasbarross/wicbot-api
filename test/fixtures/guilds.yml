@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  guild_id: MyString
+  name: MyString
+  nationality: MyString
+
+two:
+  guild_id: MyString
+  name: MyString
+  nationality: MyString
