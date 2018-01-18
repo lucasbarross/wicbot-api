@@ -1,6 +1,6 @@
 class GuildsController < ApplicationController
   before_action :set_guild, only: [:show, :update, :destroy]
-
+  before_action :doorkeeper_authorize!
   # GET /guilds
   def index
     @guilds = Guild.all
@@ -18,7 +18,7 @@ class GuildsController < ApplicationController
     @guild = Guild.new(guild_params)
 
     if @guild.save
-      render json: @guild, status: :created, location: @guild
+      render json: @guild, status: :created
     else
       render json: @guild.errors, status: :unprocessable_entity
     end

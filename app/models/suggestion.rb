@@ -1,4 +1,4 @@
 class Suggestion < ApplicationRecord
-    validates :champion_name, isChampion: true
-    validates :representation, isEmoji: true
+    validates :champion_name, champion: true
+    validates :representation, emoji: true
 end

@@ -1,6 +1,6 @@
 class Api::V1::ChampionsController < ApplicationController
   before_action :set_champion, only: [:show, :update, :destroy]
-
+  before_action :doorkeeper_authorize!
   # GET /champions
   def index
     @champions = Champion.all
@@ -18,7 +18,7 @@ class Api::V1::ChampionsController < ApplicationController
     @champion = Champion.new(champion_params)
 
     if @champion.save
-      render json: @champion, status: :created, location: @champion
+      render json: @champion, status: :created
     else
       render json: @champion.errors, status: :unprocessable_entity
     end

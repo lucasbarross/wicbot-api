@@ -1,6 +1,7 @@
 class Api::V1::SuggestionsController < ApplicationController
   before_action :set_suggestion, only: [:show, :update, :destroy]
-
+  before_action :doorkeeper_authorize!
+  
   # GET /suggestions
   def index
     @suggestions = Suggestion.all
@@ -18,7 +19,7 @@ class Api::V1::SuggestionsController < ApplicationController
     @suggestion = Suggestion.new(suggestion_params)
 
     if @suggestion.save
-      render json: @suggestion, status: :created, location: @suggestion
+      render json: @suggestion, status: :created
     else
       render json: @suggestion.errors, status: :unprocessable_entity
     end

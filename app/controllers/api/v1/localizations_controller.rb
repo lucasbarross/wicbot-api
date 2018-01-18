@@ -1,6 +1,6 @@
 class Api::V1::LocalizationsController < ApplicationController
   before_action :set_localization, only: [:show, :update, :destroy]
-
+  before_action :doorkeeper_authorize!
   # GET /localizations
   def index
     @localizations = Localization.all
@@ -18,7 +18,7 @@ class Api::V1::LocalizationsController < ApplicationController
     @localization = Localization.new(localization_params)
 
     if @localization.save
-      render json: @localization, status: :created, location: @localization
+      render json: @localization, status: :created
     else
       render json: @localization.errors, status: :unprocessable_entity
     end

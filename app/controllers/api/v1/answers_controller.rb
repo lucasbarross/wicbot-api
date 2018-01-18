@@ -1,5 +1,6 @@
 class Api::V1::AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :update, :destroy]
+  before_action :doorkeeper_authorize!
 
   # GET /answers
   def index
@@ -18,7 +19,7 @@ class Api::V1::AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
 
     if @answer.save
-      render json: @answer, status: :created, location: @answer
+      render json: @answer, status: :created
     else
       render json: @answer.errors, status: :unprocessable_entity
     end
