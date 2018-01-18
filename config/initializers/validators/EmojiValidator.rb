@@ -1,4 +1,4 @@
-class isChampionValidator < ActiveModel::EachValidator
+class EmojiValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, value)
       if invalid(value)
         record.errors[attribute] << 'Invalid emoji.'
@@ -8,8 +8,8 @@ class isChampionValidator < ActiveModel::EachValidator
     def invalid(value)
         value = value.strip
         if value[0] != ':' || value[value.length-1] != ':'
-            return false
+            return true
         end
-        return true
+        return false
     end
   end
