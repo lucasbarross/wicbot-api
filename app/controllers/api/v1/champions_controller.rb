@@ -3,8 +3,12 @@ class Api::V1::ChampionsController < ApplicationController
   before_action :doorkeeper_authorize!
   # GET /champions
   def index
-    @champions = Champion.all
-
+    if params[:user_id]
+      @selection = Answer.select('champion_id').where(player: params[:user_id], correct: true)
+      @champions = Champion.where.not(id: @selection)
+    else
+      @champions = Champion.all
+    end
     render json: @champions
   end
 

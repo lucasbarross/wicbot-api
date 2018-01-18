@@ -1,6 +1,6 @@
 class Api::V1::SuggestionsController < ApplicationController
   before_action :set_suggestion, only: [:show, :update, :destroy]
-  before_action :doorkeeper_authorize!
+  before_action :doorkeeper_authorize!, except: [:create]
   
   # GET /suggestions
   def index

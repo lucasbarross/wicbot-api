@@ -47,6 +47,6 @@ class Api::V1::AnswersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def answer_params
-      params.require(:answer).permit(:player_id, :champion_id, :correct, :hinted)
+      params.require(:answer).permit(:player, :champion_id, :correct, :hinted)
     end
 end
