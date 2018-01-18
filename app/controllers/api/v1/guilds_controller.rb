@@ -1,6 +1,6 @@
 class GuildsController < ApplicationController
   before_action :set_guild, only: [:show, :update, :destroy]
-
+  before_action :doorkeeper_authorize!
   # GET /guilds
   def index
     @guilds = Guild.all

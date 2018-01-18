@@ -1,6 +1,6 @@
 class Api::V1::ChampionsController < ApplicationController
   before_action :set_champion, only: [:show, :update, :destroy]
-
+  before_action :doorkeeper_authorize!
   # GET /champions
   def index
     @champions = Champion.all

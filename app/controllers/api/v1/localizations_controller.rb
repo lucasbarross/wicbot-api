@@ -1,6 +1,6 @@
 class Api::V1::LocalizationsController < ApplicationController
   before_action :set_localization, only: [:show, :update, :destroy]
-
+  before_action :doorkeeper_authorize!
   # GET /localizations
   def index
     @localizations = Localization.all
