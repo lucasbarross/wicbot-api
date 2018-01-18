@@ -18,7 +18,7 @@ class Api::V1::ChampionsController < ApplicationController
     @champion = Champion.new(champion_params)
 
     if @champion.save
-      render json: @champion, status: :created, location: @champion
+      render json: @champion, status: :created
     else
       render json: @champion.errors, status: :unprocessable_entity
     end
