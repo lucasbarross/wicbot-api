@@ -1,6 +1,6 @@
 class Api::V1::AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :update, :destroy]
-  before_action :doorkeeper_authorize!
+  before_action :doorkeeper_authorize!, except: [:ranking]
 
   # GET /answers
   def index
@@ -16,6 +16,9 @@ class Api::V1::AnswersController < ApplicationController
 
   # POST /answers
   def create
+    if Answer.where(player: params[:player], champion_id: params[:champion_id], correct: true).exists?
+      render json: status: :unprocessable_entity and return
+
     @answer = Answer.new(answer_params)
 
     if @answer.save
@@ -37,6 +40,23 @@ class Api::V1::AnswersController < ApplicationController
   # DELETE /answers/1
   def destroy
     @answer.destroy
+  end
+
+  # GET /status
+  def status
+    
+    if params[:user_id]
+      @status = Answer.select('player, COUNT(*)').where(correct: 1).group('player').where(player: params[:user_id])
+      if @status.exists?
+        @remaining = Champion.count(:all) - @status.count 
+      else
+        @remaining = Champion.count(:all)
+    else
+      @status = Answer.select('player, COUNT(*)').where(correct: 1).group('player')
+      @remaining = "-"
+    end
+
+    render json: { @status, remaining: @remaining }
   end
 
   private
