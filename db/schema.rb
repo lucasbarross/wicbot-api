@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20180117230216) do
   end
 
   create_table "guilds", force: :cascade do |t|
-    t.string "guild_id"
+    t.string "server_id"
     t.string "name"
     t.string "nationality"
     t.datetime "created_at", null: false
