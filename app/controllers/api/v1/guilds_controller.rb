@@ -41,11 +41,11 @@ class GuildsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_guild
-      @guild = Guild.find(params[:guild_id])
+      @guild = Guild.find(params[:server_id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def guild_params
-      params.require(:guild).permit(:guild_id, :name, :nationality)
+      params.require(:guild).permit(:server_id, :name, :nationality)
     end
 end
