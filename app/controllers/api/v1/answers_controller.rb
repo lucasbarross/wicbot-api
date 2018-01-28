@@ -1,6 +1,6 @@
 class Api::V1::AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :update, :destroy]
-  before_action :doorkeeper_authorize!, except: [:ranking]
+  before_action :doorkeeper_authorize!
 
   # GET /answers
   def index
