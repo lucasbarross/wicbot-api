@@ -49,6 +49,6 @@ class Api::V1::LocalizationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def localization_params
-      params.require(:localization).permit(:lang, :hash, :text)
+      params.require(:localization).permit(:lang, :hash_text, :text)
     end
 end

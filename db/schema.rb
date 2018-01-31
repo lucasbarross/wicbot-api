@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180117230216) do
+ActiveRecord::Schema.define(version: 20180131180316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20180117230216) do
   end
 
   create_table "guilds", force: :cascade do |t|
-    t.string "server_id"
+    t.string "guild_id"
     t.string "name"
     t.string "nationality"
     t.datetime "created_at", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20180117230216) do
 
   create_table "localizations", force: :cascade do |t|
     t.string "lang"
-    t.string "hash"
+    t.string "hash_text"
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
