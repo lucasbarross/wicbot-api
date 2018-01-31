@@ -3,8 +3,11 @@ class Api::V1::LocalizationsController < ApplicationController
   before_action :doorkeeper_authorize!
   # GET /localizations
   def index
-    @localizations = Localization.all
-
+    if params[:hash] && params[:lang]
+      @localization = Localization.where(hash: params[:hash], lang: params[:lang]) 
+    else
+      @localization = Localization.all
+    end
     render json: @localizations
   end
 
