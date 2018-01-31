@@ -4,9 +4,9 @@ class Api::V1::LocalizationsController < ApplicationController
   # GET /localizations
   def index
     if params[:hash] && params[:lang]
-      @localization = Localization.where(hash: params[:hash], lang: params[:lang]) 
+      @localizations = Localization.where(hash: params[:hash], lang: params[:lang]) 
     else
-      @localization = Localization.all
+      @localizations = Localization.all
     end
     render json: @localizations
   end
