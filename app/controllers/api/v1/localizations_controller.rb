@@ -46,10 +46,10 @@ class Api::V1::LocalizationsController < ApplicationController
     
     if hintCount > 3
       message = Localization.where(hash_text: "noHintText", lang: params[:lang])
-      render json: { message }  
+      render json: message  
     else
       hint = Localization.where(hash_text: params[:hash], lang: params[:lang])
-      render json: { hint }
+      render json: hint
     end
   end
 
