@@ -53,6 +53,7 @@ class Api::V1::AnswersController < ApplicationController
         @total_tries = Answer.select('player, COUNT(*)').group('player').where(player: params[:user_id]).take;
         @total_tries = @total_tries.count
       else
+        @status = {player: params[:user_id], count: 0}
         @remaining = Champion.all.size
         @total_tries = 0;
       end
