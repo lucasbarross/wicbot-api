@@ -61,7 +61,7 @@ class Api::V1::AnswersController < ApplicationController
       @total_tries = "-"
     end
 
-    render json: {status: @status, total_tries: @total_tries, remaining: @remaining}
+    render json: {status: @status, total_tries: @total_tries.count, remaining: @remaining}
   end
 
   private
