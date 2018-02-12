@@ -50,7 +50,7 @@ class Api::V1::AnswersController < ApplicationController
       @status = Answer.select('player, COUNT(*)').where(correct: true).group('player').where(player: params[:user_id])
       if @status.exists?
         @remaining = Champion.all.size - @status[0][:count]
-        @total_tries = Answer.select('player, COUNT(*)').group('player').where(player: params[:user_id]).first;
+        @total_tries = Answer.select('player, COUNT(*)').group('player').where(player: params[:user_id]).take;
         @total_tries = @total_tries.count
       else
         @remaining = Champion.all.size
