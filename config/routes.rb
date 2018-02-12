@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do 
         resources :localizations
-        get '/localizations/hint' to: "localizations#hint"
+        get '/localizations/hint', to: "localizations#hint"
         resources :suggestions
         resources :answers
         get '/status', to: 'answers#status'
