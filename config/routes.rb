@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         get '/localizations/hint', to: "localizations#hint"
         resources :localizations
         resources :suggestions
-        get '/answers/reset', to: 'answers#reset'
+        delete '/answers/reset', to: 'answers#reset'
         resources :answers
         get '/status', to: 'answers#status'
         resources :champions
