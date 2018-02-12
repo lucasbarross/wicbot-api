@@ -42,7 +42,7 @@ class Api::V1::LocalizationsController < ApplicationController
   end
 
   def hint
-    hintCount = Answer.count("DISTINCT champion_id", :conditions => "player = " + params[:player_id] + " AND " + "hinted = true")
+    hintCount = Answer.count("DISTINCT champion_id WHERE player = " + params[:player_id] + " AND hinted = true")
     
     if hintCount > 3
       message = Localization.where(hash_text: "noHintText", lang: params[:lang])
