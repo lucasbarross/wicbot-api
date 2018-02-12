@@ -41,6 +41,18 @@ class Api::V1::LocalizationsController < ApplicationController
     @localization.destroy
   end
 
+  def hint
+    hintCount = Answer.count("DISTINCT champion").where(hinted: true)
+    
+    if hintCount > 3
+      message = Localization.where(hash_text: "noHintText", lang: params[:lang])
+      render json: { message }  
+    else
+      hint = Localization.where(hash_text: params[:hash], lang: params[:lang])
+      render json: { hint }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_localization
