@@ -44,7 +44,7 @@ class Api::V1::LocalizationsController < ApplicationController
   def hint
     hintCount = Answer.select("DISTINCT champion_id").where(player: params[:player_id], hinted: true)
     
-    if hintCount.count => 3
+    if hintCount.count >= 3
       message = Localization.where(hash_text: "noHintText", lang: params[:lang]).first
       render json: message  
     else
