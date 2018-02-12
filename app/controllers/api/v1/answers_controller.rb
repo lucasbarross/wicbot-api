@@ -66,6 +66,11 @@ class Api::V1::AnswersController < ApplicationController
     render json: {status: @status, total_tries: @total_tries, remaining: @remaining}
   end
 
+  # DELETE /answers/reset
+  def reset
+    Answer.where(player: params[:user_id]).delete_all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
