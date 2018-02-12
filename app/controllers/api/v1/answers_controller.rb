@@ -47,21 +47,22 @@ class Api::V1::AnswersController < ApplicationController
   def status
     
     if params[:user_id]
-      @status = Answer.select('player, COUNT(*)').where(correct: 1).group('player').where(player: params[:user_id])
+      @status = Answer.select('player, COUNT(*)').where(correct: true).group('player').where(player: params[:user_id])
       if @status.exists?
         @remaining = Champion.all.size - @status[0][:count]
-        @total_tries = Answer.select('player, COUNT(*)').group('player').where(player: params[:user_id]);
+        @total_tries = Answer.select('player, COUNT(*)').group('player').where(player: params[:user_id]).first;
+        @total_tries = @total_tries.count
       else
         @remaining = Champion.all.size
         @total_tries = 0;
       end
     else
-      @status = Answer.select('player, COUNT(*)').where(correct: 1).group('player')
+      @status = Answer.select('player, COUNT(*)').where(correct: true).group('player')
       @remaining = "-"
       @total_tries = "-"
     end
 
-    render json: {status: @status, total_tries: @total_tries.count, remaining: @remaining}
+    render json: {status: @status, total_tries: @total_tries, remaining: @remaining}
   end
 
   private
