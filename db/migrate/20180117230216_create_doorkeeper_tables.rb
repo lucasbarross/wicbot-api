@@ -10,7 +10,8 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[5.1]
     end
 
     add_index :oauth_applications, :uid, unique: true
-
+    add_column :oauth_applications, :confidential, :boolean, default: true, null: false
+    
     create_table :oauth_access_grants do |t|
       t.integer  :resource_owner_id, null: false
       t.references :application,     null: false
