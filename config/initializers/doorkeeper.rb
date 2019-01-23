@@ -106,9 +106,7 @@ Doorkeeper.configure do
   # skip_authorization do |resource_owner, client|
   #   client.superapp? or resource_owner.admin?
   # end
-  Doorkeeper::Application.class_eval do
-    field :confidential, type: Boolean, default: true
-  end
+
   # WWW-Authenticate Realm (default "Doorkeeper").
   # realm "Doorkeeper"
 end
