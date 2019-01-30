@@ -70,7 +70,7 @@ class Api::V1::AnswersController < ApplicationController
 
     @total_champions = Champion.all.size
     @records = Answer.select('player, MAX(created_at) as last_guess_date').where(correct: true).group('player').having("COUNT(*) = ?", @total_champions)
-    @last = @records.order("last_guess_date asc").first
+    @last = @records.order("last_guess_date desc").first
     
     @total_tries = Answer.select('player, COUNT(*)').group('player').where(player: @last.player).take.count;
     
