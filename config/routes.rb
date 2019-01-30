@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         delete '/answers/reset', to: 'answers#reset'
         resources :answers
         get '/status', to: 'answers#status'
+        get '/rank', to: 'answers#lastToComplete'
         resources :champions
     end
   end
