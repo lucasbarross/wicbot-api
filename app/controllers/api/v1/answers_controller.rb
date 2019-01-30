@@ -79,7 +79,7 @@ class Api::V1::AnswersController < ApplicationController
     if @last
       render json: @res
     else
-      render json: "no_winner" 
+      render json: "no_winner_yet" 
     end
   end
 
