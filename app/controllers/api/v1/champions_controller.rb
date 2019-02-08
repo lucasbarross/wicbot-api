@@ -41,7 +41,7 @@ class Api::V1::ChampionsController < ApplicationController
   def destroy
     @champion.destroy
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_champion

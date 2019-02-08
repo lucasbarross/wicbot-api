@@ -12,5 +12,9 @@ Rails.application.routes.draw do
         get '/rank', to: 'answers#lastToComplete'
         resources :champions
     end
+    
+    namespace 'v2' do 
+        get '/champions', to: 'champions#getOne'
+    end
   end
 end
