@@ -19,13 +19,15 @@ class Api::V2::ChampionsController < ApplicationController
           "
 
           champion = Champion.find_by_sql([query, selection, champions])
-          champion = [champion.sample]
-          puts champion
+          
+          if champion.length > 0
+            champion = [champion.sample]
+          end
         else
           champion = Champion.where.not(id: selection).order("RANDOM()").limit(1)
         end
     
-        if champion 
+        if champion.length > 0
           complete = false
         end
     

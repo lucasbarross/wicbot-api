@@ -14,6 +14,12 @@ ActiveRecord::Schema.define(version: 20180131180316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
+  enable_extension "hstore"
+  enable_extension "unaccent"
+  enable_extension "pgcrypto"
+  enable_extension "plperl"
+  enable_extension "uuid-ossp"
 
   create_table "answers", force: :cascade do |t|
     t.string "player"
@@ -33,7 +39,7 @@ ActiveRecord::Schema.define(version: 20180131180316) do
   end
 
   create_table "guilds", force: :cascade do |t|
-    t.string "guild_id"
+    t.string "server_id"
     t.string "name"
     t.string "nationality"
     t.datetime "created_at", null: false
@@ -85,6 +91,7 @@ ActiveRecord::Schema.define(version: 20180131180316) do
     t.string "scopes", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "confidential", default: true, null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
