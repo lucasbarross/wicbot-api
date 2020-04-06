@@ -58,6 +58,6 @@ class Api::V1::ChampionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def champion_params
-      params.require(:champion).permit(:name, :representation)
+      params.require(:champion).permit(:name, :representation, :sandbox)
     end
 end

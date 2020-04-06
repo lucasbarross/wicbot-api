@@ -1,4 +1,4 @@
-class DropGuildsTable < ActiveRecord::Migration[6.0]
+class DropGuildsTable < ActiveRecord::Migration[5.1]
   def change
     drop_table :guilds do |t|
       t.string :server_id
