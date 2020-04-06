@@ -49,12 +49,12 @@ class Api::V1::AnswersController < ApplicationController
     if params[:user_id]
       @status = Answer.select('player, COUNT(*)').where(correct: true).group('player').where(player: params[:user_id]).take
       if @status
-        @remaining = Champion.all.size - @status[:count]
+        @remaining = Champion.where(sandbox: false).size - @status[:count]
         @total_tries = Answer.select('player, COUNT(*)').group('player').where(player: params[:user_id]).take;
         @total_tries = @total_tries.count
       else
         @status = {player: params[:user_id], count: 0}
-        @remaining = Champion.all.size
+        @remaining = Champion.where(sandbox: false).size
         @total_tries = 0;
       end
     else
@@ -68,15 +68,14 @@ class Api::V1::AnswersController < ApplicationController
   
   def lastToComplete
 
-    @total_champions = Champion.all.size
+    @total_champions = Champion.where(sandbox: false).size
     @records = Answer.select('player, MAX(created_at) as last_guess_date').where(correct: true).group('player').having("COUNT(*) = ?", @total_champions)
     @last = @records.order("last_guess_date desc").first
     
     @total_tries = Answer.select('player, COUNT(*)').group('player').where(player: @last.player).take.count;
-    
-    @res = { id: @last.player, date: @last.last_guess_date, total_tries: @total_tries }
-
+  
     if @last
+      @res = { id: @last.player, date: @last.last_guess_date, total_tries: @total_tries }
       render json: @res
     else
       render json: "no_winner" 

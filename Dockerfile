@@ -1,5 +1,5 @@
 # Use the barebones version of Ruby 2.2.3.
-FROM ruby:2.6.0-slim
+FROM ruby:2.7.1-slim
 
 # Install dependencies:
 # - build-essential: To ensure certain gems can be compiled
