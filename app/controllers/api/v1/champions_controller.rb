@@ -13,7 +13,7 @@ class Api::V1::ChampionsController < ApplicationController
 
     if params[:user_id]
       @selection = Answer.select('champion_id').where(player: params[:user_id], correct: true)
-      @champions = Champion.where(sandbox: @sandbox).not(id: @selection)
+      @champions = Champion.where(sandbox: @sandbox).where.not(id: @selection)
     else
       @champions = Champion.all
     end
